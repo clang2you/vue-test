@@ -1,10 +1,12 @@
 <template>
   <div class="sidebar-logo-container" :class="{'collapse':collapse}">
     <transition name="sidebarLogoFade">
+      <!-- 侧边栏收缩的情况下 Logo / Title 二选一，logo 非 null 或 undefined 的情况下显示 logo，否则显示 title-->
       <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
         <img v-if="logo" :src="logo" class="sidebar-logo">
         <h1 v-else class="sidebar-title">{{ title }} </h1>
       </router-link>
+      <!-- 侧边栏展开的情况下显示 Logo & Title，如果 logo 为 null 或 undefined，则只显示 Title -->
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
         <img v-if="logo" :src="logo" class="sidebar-logo">
         <h1 class="sidebar-title">{{ title }} </h1>
@@ -24,8 +26,9 @@ export default {
   },
   data() {
     return {
+      // logo 是可选的, Title 没有值 SiderbarLogo 位置为空
       title: 'Vue Admin Template',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      // logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
     }
   }
 }
